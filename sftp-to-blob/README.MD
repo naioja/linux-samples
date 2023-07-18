@@ -33,7 +33,7 @@ LOCATION='eastus'
 VM_NAME='linux001'
 VM_USERNAME='azureadmin'
 VM_SIZE='Standard_B1ls'
-VM_IMAGE='Canonical:0001-com-ubuntu-minimal-jammy:minimal-22_04-lts-gen2:22.04.202305150'
+VM_IMAGE='Canonical:0001-com-ubuntu-minimal-jammy:minimal-22_04-lts-gen2:latest'
 VM_STORAGE_SKU='Standard_LRS'
 VM_NIC_NAME='nic001-linux001'
 VM_NIC_IPCONFIG1='10.250.0.4'
@@ -189,9 +189,7 @@ az network nic ip-config create \
 To get the latest Ubuntu image you can just run:
 
 ```bash
-az vm image list -o json \
-    --all --publisher Canonical | \
-    jq '[.[] | select(.sku=="22_04-lts")] | max_by(.version)'
+az vm image show --urn Canonical:0001-com-ubuntu-minimal-jammy:minimal-22_04-lts-gen2:latest
 ```
 
 In this case cheapest would be **Standard_B1ls** with 1 CPU, 0.5 GB RAM, so it's _single az vm create_ time:
