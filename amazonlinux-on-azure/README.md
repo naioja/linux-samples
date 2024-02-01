@@ -238,6 +238,13 @@ sudo chroot /srv yum install -y hyperv-daemons
 sudo chroot /srv dracut -f --regenerate-all
 ```
 
+11. Install a slightly newer version of cloud-init
+
+```bash
+sudo chroot /srv wget 'https://mirror.eu.oneandone.net/linux/distributions/centos/7.9.2009/os/x86_64/Packages/cloud-init-19.4-7.el7.centos.x86_64.rpm' -O /tmp/cloud-init-19.4-7.el7.centos.x86_64.rpm
+sudo chroot /srv yum localinstall -y /tmp/cloud-init-19.4-7.el7.centos.x86_64.rpm
+```
+
 ## Now prepare the image to be imported in Azure
 
 Unmount the image
